@@ -1,0 +1,304 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+p { margin: 0; }
+
+#stage {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  min-width: 1100px; min-height: 650px;
+  overflow: hidden;
+}
+
+/**
+ * #prologue
+ */
+#prologue {
+  position: absolute;
+  top: 0; left: 0;
+  width: 200%; height: 100%;
+}
+
+
+/*** 共通: .word-1, .word-2 ***/
+#prologue .word-1,
+#prologue .word-2 {
+  position: absolute;
+  top: calc(50% - 60px);
+  height: 120px;
+}
+#prologue .word-1 div,
+#prologue .word-2 div {
+  float: left;
+  width: 120px; height: 120px;
+  border: dashed 1px #888;
+  border-right: none;
+  box-sizing: border-box;
+}
+#prologue .word-1 div p,
+#prologue .word-2 div p {
+  width: 100%; height: 100%;
+  font-size: 80px;
+  color: #777;
+  text-align: center;
+  line-height: 120px;
+  opacity: 0;
+}
+#prologue .word-1 div:last-child,
+#prologue .word-2 div:last-child { border-right: dashed 1px #888; }
+#prologue .word-1:after,
+#prologue .word-2:after {
+  content: ""; display: block; clear: both;
+}
+
+/*** .word-1 ***/
+#prologue .word-1 { left: calc(25% - 240px); }
+
+/*** .word-2 ***/
+#prologue .word-2 { right: 80px; }
+
+
+/*** .connect-line ***/
+#prologue .connect-line {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+#prologue .connect-line .point {
+  position: absolute; top: calc(50% + 90px);
+  width: 20px; height: 20px;
+  background-color: #666;
+  border-radius: 50%;
+}
+#prologue .connect-line .point-1 { left: calc(25% - 250px); }
+#prologue .connect-line .point-2 { left: calc(25% + 230px); }
+#prologue .connect-line .point-3 { right: 70px; transform: scale(0); }
+
+#prologue .line {
+  position: absolute;
+  top: calc(50% + 99px);
+  height: 1px;
+  overflow: hidden;
+}
+#prologue .line:after {
+  content: ""; display: block;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: #666;
+  transform: translateX(-100%);
+}
+#prologue .line-1 { width: 480px; left: calc(25% - 240px); }
+#prologue .line-2 {
+  width: calc(((50% - 480px) / 2) + (50% - 80px));
+  right: 80px;
+}
+/*** .word-1 ***/
+#prologue .word-1 div:nth-child(1) p { animation: show-word 0.6s ease-out 0.0s forwards; }
+#prologue .word-1 div:nth-child(2) p { animation: show-word 0.6s ease-out 0.4s forwards; }
+#prologue .word-1 div:nth-child(3) p { animation: show-word 0.6s ease-out 0.6s forwards; }
+#prologue .word-1 div:nth-child(4) p { animation: show-word 0.6s ease-out 0.8s forwards; }
+
+/*** .line-1 ***/
+#prologue .line-1:after { animation: draw-line 1.4s ease 0s forwards; }
+
+/*** #prologue: ここで右側に移動する ***/
+#prologue { animation: move-prologue 0.8s ease 1.4s forwards; }
+
+/*** .line-2 ***/
+#prologue .line-2:after { animation: slash-line 1.6s ease 1.4s forwards; }
+
+/*** .point-3 ***/
+#prologue .point-3 { animation: put-point 2.0s ease-out 2.4s forwards; }
+
+/*** .word-2 ***/
+#prologue .word-2 div:nth-child(1) p { animation: show-word 0.6s ease-out 1.8s forwards; }
+#prologue .word-2 div:nth-child(2) p { animation: show-word 0.6s ease-out 2.0s forwards; }
+
+/*** .word-2: ここで次のパートに繋ぐための回転 ***/
+#prologue .word-2 { animation: rotate-word-2 0.4s ease 2.8s forwards; }
+
+/*********************************************************************************
+  keyframes
+**********************************************************************************/
+@keyframes show-word {
+  0%   { transform: scale(0.4); opacity: 0; }
+  70%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes draw-line {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(0%); }
+}
+@keyframes slash-line {
+  0%   { transform: translateX(-100%); }
+  50%  { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+@keyframes move-prologue {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes put-point {
+  0%   { transform: scale(1); }
+  50%   { transform: scale(3); }
+  80%   { transform: scale(200); }
+  100% { transform: scale(500); }
+}
+@keyframes rotate-word-2 {
+  50%   { transform: scale(1); }
+  100% { transform: scale(0);}
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * stage
+ */
+.stage:before,
+.stage:after { position: absolute; content: ""; display: block; }
+
+.stage:before {
+  top: 20px; left: 20px;
+  width: calc(100% - 40px); height: calc(100% - 40px);
+  border: dashed 5px #635256;
+  border-radius: 30px;
+  box-sizing: border-box;
+  opacity: 0.3;
+}
+.stage:after {
+  width: 400px; height: 400px;
+  top: calc(50% - 200px); left: calc(50% - 200px);
+  border-radius: 50%;
+  background-color: #635256;
+}
+
+
+  /**
+   * effect
+   */
+  .effect {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .effect div {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
+  .effect div:after {
+    content: ""; display: block;
+    position: absolute;
+    opacity: 0;
+  }
+  .effect div:nth-child(1) { transform: rotate(0deg);   }
+  .effect div:nth-child(2) { transform: rotate(45deg);  }
+  .effect div:nth-child(3) { transform: rotate(90deg);  }
+  .effect div:nth-child(4) { transform: rotate(135deg); }
+  .effect div:nth-child(5) { transform: rotate(180deg); }
+  .effect div:nth-child(6) { transform: rotate(225deg); }
+  .effect div:nth-child(7) { transform: rotate(270deg); }
+  .effect div:nth-child(8) { transform: rotate(315deg); }
+
+
+  /*** effect_type_1 ***/
+  .effect_type_1 {
+    top: calc(50% - 200px); left: calc(50% - 200px);
+  }
+  .effect_type_1 div:after {
+    top: 5px; left: calc(50% - 20px);
+    border-top: solid 70px #e9b5c3;
+    border-left: solid 20px transparent;
+    border-right: solid 20px transparent;
+    transform: translateY(130px);
+  }
+
+/*** effect_type_2 ***/
+.effect_type_2 {
+  top: 50%; left: calc(50% - 400px);
+}
+.effect_type_2 div:after {
+  top: 0px; left: calc(50% - 40px);
+  width: 40px; height: 40px;
+  background-color: #e9e78d;
+  border-radius: 50%;
+  transform: translateY(170px);
+}
+
+/*** effect_type_3 ***/
+.effect_type_3 {
+  top: calc(50% - 400px); left: 50%;
+}
+.effect_type_3 div:after {
+  top: 0px; left: calc(50% - 20px);
+  width: 40px; height: 40px;
+  background-color: rgb(163, 226, 255);
+  transform: translateY(150px);
+}
+
+
+/***************************************************************************************************
+ *  animation
+ ***************************************************************************************************/
+
+/*** stage ***/
+.stage:after { animation: hidden-ball 0.6s ease 3.2s forwards; }
+
+/*** effect_type_1 ***/
+.effect_type_1 div:after {
+  animation:
+    fadein 0.3s ease 3.7s forwards,
+    show-type-1 0.6s ease 3.7s forwards;
+}
+
+/*** effect_type_2 ***/
+.effect_type_2 { animation: rotate360 4s ease 3.8s forwards; }
+.effect_type_2 div:after {
+  animation:
+    fadein 0.3s ease 4.3s forwards,
+    show-type-2 0.6s ease 4.3s forwards;
+}
+
+/*** effect_type_3 ***/
+.effect_type_3 div:after {
+  animation:
+    fadein 0.3s ease 4.9s forwards,
+    show-type-3 0.6s ease 4.9s forwards;
+}
+
+
+/***************************************************************************************************
+ *  keyframes
+ ***************************************************************************************************/
+@keyframes hidden-ball {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(0); }
+}
+@keyframes show-type-1 {
+  from { transform: translateY(130px); }
+  to   { transform: translateY(-75px); }
+}
+@keyframes show-type-2 {
+  from { transform: translateY(170px); }
+  to   { transform: translateY(-40px); }
+}
+@keyframes show-type-3 {
+  from { transform: translateY(150px) rotate(0deg); }
+  to   { transform: translateY(-40px) rotate(270deg); }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
