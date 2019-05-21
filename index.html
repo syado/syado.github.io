@@ -1,2 +1,31 @@
-"Hello World" 
-"Syado"
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+　　<!-- vue.js　-->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="manifest" href="manifest.json">
+    <title>PWA Sample</title>
+  </head>
+  <body>
+    <div id="app">
+        <p>{{ message }}</p>
+     </div>
+    <script>
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service_worker.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+    });
+    }
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Syado!'
+      }
+    });
+    </script>
+  </body>
+</html>
