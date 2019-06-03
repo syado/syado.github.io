@@ -1,0 +1,70 @@
+<!-- index.html -->
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- manifest.jsonを呼び出しています -->
+    <link rel="manifest" href="./manifest.json">
+    <script>
+        // service workerが有効なら、service-worker.js を登録します
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service-worker.js').then(function () { console.log('Service Worker Registered'); });
+        }
+    </script>
+    <title>Hello PWA.</title>
+    <style>
+        #tehai {
+            font-size: 0;
+        }
+
+        #tehai>img {
+            width: calc( ( 100% - 14 * 4px) / 14);
+            margin-left: 2px;
+            margin-right: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tehai" style="width: 100%; ">
+        <img id="hai1" src="images/tmp_img.jpg" />
+        <img id="hai2" src="images/tmp_img.jpg" />
+        <img id="hai3" src="images/tmp_img.jpg" />
+        <img id="hai4" src="images/tmp_img.jpg" />
+        <img id="hai5" src="images/tmp_img.jpg" />
+        <img id="hai6" src="images/tmp_img.jpg" />
+        <img id="hai7" src="images/tmp_img.jpg" />
+        <img id="hai8" src="images/tmp_img.jpg" />
+        <img id="hai9" src="images/tmp_img.jpg" />
+        <img id="hai10" src="images/tmp_img.jpg" />
+        <img id="hai11" src="images/tmp_img.jpg" />
+        <img id="hai12" src="images/tmp_img.jpg" />
+        <img id="hai13" src="images/tmp_img.jpg" />
+        <img id="hai14" src="images/tmp_img.jpg" />
+    </div>
+    <div style="display: flex;">
+        <div id=yaku style="width: 25%; background-color: gray; margin: 4px;">
+            役
+        </div>
+        <div id=kaze>
+            <img id="kaze" src="images/tmp_img.jpg" style="margin: 4px;" /><br>
+            <img id="kaze" src="images/tmp_img.jpg" style="margin: 4px;" />
+        </div>
+        <form action="#" method="post">
+            <input type="checkbox">天和・地和
+            <br>
+            <input type="checkbox">天和・地和
+            <br>
+        </form>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Syado!'
+            }
+        });
+    </script>
+</body>
+
+</html>
