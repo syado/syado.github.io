@@ -1,5 +1,6 @@
 //下記はカメラデータの送信部分
 function camera_send() {
+    alert('送信中');
     //送信先URL
     var host_url = "http://52.196.253.153/img_api/base64";
     //canvas elementを取得
@@ -37,6 +38,7 @@ function camera_send() {
 }
 
 function img_form_send() {
+    alert('送信中');
     $.ajax({
         //画像処理サーバーに返す場合
         url: $("#img_form").attr('action'),
