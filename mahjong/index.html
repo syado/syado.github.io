@@ -3,15 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <!-- manifest.jsonを呼び出しています -->
-    <link rel="manifest" href="./manifest.json">
-    <script>
-        // service workerが有効なら、service-worker.js を登録します
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./service-worker.js').then(function () { console.log('Service Worker Registered'); });
-        }
-    </script>
     <link rel="stylesheet" href="style_idx.css">
 
     <title>麻雀カメラ</title>
