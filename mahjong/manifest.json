@@ -1,6 +1,6 @@
 {
-    "short_name": "麻雀",
-    "name": "mahjong app",
+    "short_name": "MCA",
+    "name": "Mahjong_Calculation_App",
     "display": "standalone",
     "start_url": "index.html",
     "icons": [
