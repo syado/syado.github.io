@@ -1,8 +1,8 @@
-<!DOCTYPE html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
+
     <link rel="stylesheet" href="style_idx.css">
 
     <title>麻雀カメラ</title>
@@ -17,10 +17,10 @@
     <form action="web_camera.html" method="GET">
         <button class="btn" type="submit">写真を撮る</button>
     </form>
-    <form id="img_form" action="http://52.196.253.153/img_api/post" method="POST" enctype="multipart/form-data">
+    <form id="img_form" action="//mahjong.syado.net/img_api/post" method="POST" enctype="multipart/form-data">
         <input onchange="img_form_send()" type="file" name="image" accept="image/png, image/jpeg, image/jpg">
     </form>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="api.js"></script>
 </body>
 
