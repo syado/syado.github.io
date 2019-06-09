@@ -1,7 +1,7 @@
 // キャッシュファイルの指定
 var CACHE_NAME = 'pwa-sample-caches';
 var urlsToCache = [
-    '/syado.github.io/',
+    '/github.syado.net/',
 ];
 
 // インストール処理
