@@ -1,7 +1,8 @@
 // キャッシュファイルの指定
 var CACHE_NAME = 'Mahjong_Calculation_App';
 var urlsToCache = [
-    '/syado.github.io/mahjong/',
+    '/hai/',
+    '/image/',
 ];
 
 // インストール処理
