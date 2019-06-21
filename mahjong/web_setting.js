@@ -169,7 +169,7 @@ function calc() {
     console.log(json_data);
 
     $.ajax({
-        url: 'https://mahjong.syado.net/calc_api/post',
+        url: '//mahjong.syado.net/calc_api/post',
         method: "POST",
         dataType: 'json',
         contentType: 'application/json',

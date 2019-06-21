@@ -2,7 +2,7 @@
 function camera_send() {
     $( ".loading" ).fadeIn( "fast" ) ;
     //送信先URL
-    var host_url = "https://mahjong.syado.net/img_api/base64";
+    var host_url = "//mahjong.syado.net/img_api/base64";
     //canvas elementを取得
     var canvas = document.getElementById('canvas');
     //base64データを取得（エンコード）
