@@ -4,7 +4,6 @@ var naki_mode = "";
 var pon_cnt = 1;
 var chi_cnt = 1;
 var kan_cnt = 1;
-var set_hai =["", "", "", "", "", "", "", "", "", "", "", "", "", ""];
 var tehai_ar = ["tehai_01", "tehai_02", "tehai_03", "tehai_04", "tehai_05", "tehai_06", "tehai_07", "tehai_08", "tehai_09", "tehai_10", "tehai_11", "tehai_12", "tehai_13", "agarihai"];
 var houra_ar = ["houra_01", "houra_02", "houra_03", "houra_04", "houra_05", "houra_06", "houra_07", "houra_08", "houra_09", "houra_10", "houra_11", "houra_12", "houra_13", "houra_a"];
 var naki_ar = ["naki_01", "naki_02", "naki_03", "naki_04", "naki_05", "naki_06", "naki_07", "naki_08", "naki_09", "naki_10", "naki_11", "naki_12", "naki_13", "naki_a"];
@@ -112,8 +111,9 @@ function modal_open_rslt() {
 }
 
 // 鳴き画面オープン
-function modal_open_naki(id) {	
+function modal_open_naki(id) {
 	naki_mode = id;
+	naki_title_change(naki_mode);
 	//キーボード操作などにより、オーバーレイが多重起動するのを防止する
 	$( this ).blur() ;	//ボタンからフォーカスを外す
 	if( $( "#modal-overlay" )[0] ) return false ;		//新しくモーダルウィンドウを起動しない (防止策1)
@@ -147,28 +147,46 @@ $( window ).resize( centeringModalSyncer ) ;
 $( window ).resize( centeringModalSyncerRslt ) ;
 $( window ).resize( centeringModalSyncerNaki ) ;
 
+function naki_title_change(id) {
+	var element = document.getElementById("naki_title");
+	switch (id) {
+		case "10":
+			element.innerHTML = "ポンした牌を選択してください";
+			break;
+		case "20":
+			element.innerHTML = "チーした牌を選択してください";
+			break;
+		case "30":
+			element.innerHTML = "明槓した牌を選択してください";
+			break;
+		case "40":
+			element.innerHTML = "暗槓した牌を選択してください";
+			break;
+	}
+}
+
 function naki(id) {
 	var element = document.getElementById(id);
 	if (naki_cnt < 2 && element.className == "none") {
 		naki_cnt += 1;
 		switch (naki_mode) {
-			case "pon":
+			case "10":
 				element.className = naki_mode + pon_cnt;
 				break;
-			case "chi":
+			case "20":
 				element.className = naki_mode + chi_cnt;
 				break;
-			case "open_kan":
+			case "30":
 				element.className = naki_mode + kan_cnt;
 				break;
-			case "close_kan":
+			case "40":
 				element.className = naki_mode + kan_cnt;
 				break;
 		}
 	} 
 	else if (naki_cnt == 2 && element.className == "none") {
 		switch (naki_mode) {
-			case "pon":
+			case "10":
 				element.className = naki_mode + pon_cnt;
 				for (var j = 0; j < 13; j++) {
 					if (document.getElementById(naki_ar[j]).className == naki_mode + pon_cnt) {
@@ -177,7 +195,7 @@ function naki(id) {
 				}
 				pon_cnt += 1;
 				break;
-			case "chi":
+			case "20":
 				element.className = naki_mode + chi_cnt;
 				for (var j = 0; j < 13; j++) {
 					if (document.getElementById(naki_ar[j]).className == naki_mode + chi_cnt) {
@@ -186,7 +204,7 @@ function naki(id) {
 				}
 				chi_cnt += 1;
 				break;
-			case "open_kan":
+			case "30":
 				element.className = naki_mode + kan_cnt;
 				for (var j = 0; j < 13; j++) {
 					if (document.getElementById(naki_ar[j]).className == naki_mode + kan_cnt) {
@@ -195,7 +213,7 @@ function naki(id) {
 				}
 				kan_cnt += 1;
 				break;
-			case "close_kan":
+			case "40":
 				element.className = naki_mode + kan_cnt;
 				for (var j = 0; j < 13; j++) {
 					if (document.getElementById(naki_ar[j]).className == naki_mode + kan_cnt) {
@@ -203,19 +221,129 @@ function naki(id) {
 					}
 				}
 				kan_cnt += 1;
+				break;
+		} 
+		$( "#modal-content-naki,#modal-overlay" ).fadeOut( "fast" , function(){
+			//[#modal-overlay]を削除する
+			$('#modal-overlay').remove() ;
+		} ) ;
+		naki_reset();
+		hai_load();
+	}
+	else if (naki_cnt == 0 && element.className != "none") {
+		for (var j = 0; j < 13; j++) {
+			var clsnmsrc = element.className
+			var mode = clsnmsrc.slice(0,-1);
+			var srcnum = clsnmsrc.slice(-1);
+			var clsnm = document.getElementById(naki_ar[j]).className
+			if (mode == clsnm.slice(0,-1)) {
+				if(srcnum == clsnm.slice(-1)) {
+					document.getElementById(tehai_ar[j]).className = "none";
+				} else if (srcnum < clsnm.slice(-1)) {
+					document.getElementById(tehai_ar[j]).className = mode + (clsnm.slice(-1) - 1);
+				}
+			} else if (mode == "30") {
+				mode = "40";
+				if(mode == clsnm.slice(0,-1) && srcnum < clsnm.slice(-1)) {
+					document.getElementById(tehai_ar[j]).className = mode + (clsnm.slice(-1) - 1);
+				}
+			} else if (mode == "40") {
+				mode = "30";
+				if(mode == clsnm.slice(0,-1) && srcnum < clsnm.slice(-1)) {
+					document.getElementById(tehai_ar[j]).className = mode + (clsnm.slice(-1) - 1);
+				}
+			}
+		}
+		switch (mode) {
+			case "10": 
+				pon_cnt -= 1;
+				break;
+			case "20": 
+				chi_cnt -= 1;
+				break;
+			case "30": 
+				kan_cnt -= 1;
+				break;
+			case "40": 
+				kan_cnt -= 1;
 				break;
 		}
 		$( "#modal-content-naki,#modal-overlay" ).fadeOut( "fast" , function(){
 			//[#modal-overlay]を削除する
 			$('#modal-overlay').remove() ;
 		} ) ;
-		naki_cnt = 0;
-		naki_mode = "";
+		naki_reset();
+		hai_load();
 	}
 }
 function naki_reset() {
 	naki_cnt = 0;
 	naki_mode = "";
+}
+//鳴き対応のソート
+function hai_load() {
+	var cnt = 0;
+	var n_cnt = 0;
+	var set_hai = [];
+	var naki_hai = [];
+	// 現在の牌を配列に保存
+	for (var j = 0; j < 13; j++) {
+		var tmp_a = document.getElementById(tehai_ar[j]).alt;
+		var tmp_c = document.getElementById(tehai_ar[j]).className;
+		if (tmp_c == "none") {
+			set_hai[cnt] = {hai: "", cls: ""};
+			set_hai[cnt].hai = tmp_a;
+			set_hai[cnt].cls = tmp_c;
+			cnt += 1;
+		} else {
+			naki_hai[n_cnt] = {hai: "", cls: ""};
+			naki_hai[n_cnt].hai = tmp_a;
+			naki_hai[n_cnt].cls = tmp_c.slice(0,-1);
+			naki_hai[n_cnt].cls += tmp_c.slice(-1);
+			n_cnt += 1;
+		}
+	}
+	// ソート
+	naki_hai.sort(function(a, b) {
+		if (a.cls < b.cls) {
+		  return -1;
+		}
+		if (a.cls > b.cls) {
+		  return 1;
+		}
+		return 0;
+	});
+	// 鳴き牌を配列に追加
+	for (var j = 0; j < n_cnt; j++) {
+		set_hai[cnt] = {hai: "", cls: ""};
+		set_hai[cnt].hai = naki_hai[j].hai;
+		set_hai[cnt].cls = naki_hai[j].cls;
+		cnt += 1;
+	}
+	var agari = document.getElementById("agarihai");
+	set_hai[13] = {hai: "", cls: ""};
+	set_hai[13].hai = agari.alt
+	set_hai[13].cls = agari.className;
+	// 現在の牌を削除して再描画
+	var element = document.getElementById("tehai");
+	modal_reset(element);
+	for (var j = 0; j < 14; j++) {
+		var img = document.createElement('img');
+		if (set_hai[j].hai == "error") {
+			var type = "h";
+			var num = "error";
+		} else {
+			var type = set_hai[j].hai.slice(0, 1);
+			var num = set_hai[j].hai.slice(1);
+		}
+		img.id = tehai_ar[j];
+		img.src = "hai/" + type + "/" + num + ".png";
+		img.alt = set_hai[j].hai
+		img.className = set_hai[j].cls
+		img.onclick = new Function("modal_open(this.id);");
+		element.appendChild(img);
+	}
+	console.log(set_hai);
 }
 
 // リザルト&鳴き画面の牌生成 (挿入先のidを取得して生成)
@@ -226,6 +354,7 @@ function modal_hai_load(id) {
 	// 設定画面から牌を取得して生成
 	for (var j = 0; j < 14; j++) {
 		var tmp = document.getElementById(tehai_ar[j]).alt;
+		var tmp_c = document.getElementById(tehai_ar[j]).className;
 		if (tmp == "error") {
 			var type = "h"
 			var num = "error"
@@ -237,10 +366,9 @@ function modal_hai_load(id) {
 		img.id = houra_ar[j];
 		img.src = "hai/" + type + "/" + num + ".png";
 		img.alt = type + num;
+		img.className = tmp_c;
 		if (id == "tehai_naki") {
-			set_hai[j] = tmp;
 			img.id = naki_ar[j];
-			img.className = "none";
 			img.onclick = new Function("naki(this.id);");
 			if (j == 13) {
 				img.className = "agari";

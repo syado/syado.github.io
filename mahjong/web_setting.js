@@ -95,7 +95,6 @@ function tenhou() {
 }
 
 var rslt
-var kan_cnt = 0;
 
 function calc() {
     var tehai_ar = ["tehai_01", "tehai_02", "tehai_03", "tehai_04", "tehai_05", "tehai_06", "tehai_07", "tehai_08", "tehai_09", "tehai_10", "tehai_11", "tehai_12", "tehai_13", "agarihai"];
@@ -114,6 +113,7 @@ function calc() {
     var pon = [];
     var chi = [];
     var kan = [];
+    var cnt = 0;
     for (var j = 0; j < 14; j++) {
         var tmp = document.getElementById(tehai_ar[j]).alt;
         var cls = document.getElementById(tehai_ar[j]).className;
@@ -127,8 +127,8 @@ function calc() {
             else if (tmp.slice(0, 1) == "s") agari.sou += tmp.slice(1);
             else if (tmp.slice(0, 1) == "h") agari.honors += tmp.slice(1);
         }
-        if (cls.slice(0,3) == "pon") {
-            var num = cls.slice(3);
+        if (cls.slice(0,2) == "10") {
+            var num = cls.slice(2);
             num -= 1;
             if (pon[num] == null){
                 pon[num] = {
@@ -143,8 +143,8 @@ function calc() {
             else if (tmp.slice(0, 1) == "s") pon[num].sou += tmp.slice(1);
             else if (tmp.slice(0, 1) == "h") pon[num].honors += tmp.slice(1);
         }
-        if (cls.slice(0,3) == "chi") {
-            var num = cls.slice(3);
+        if (cls.slice(0,2) == "20") {
+            var num = cls.slice(2);
             num -= 1;
             if (chi[num] == null){
                 chi[num] = {
@@ -159,9 +159,9 @@ function calc() {
             else if (tmp.slice(0, 1) == "s") chi[num].sou += tmp.slice(1);
             else if (tmp.slice(0, 1) == "h") chi[num].honors += tmp.slice(1);
         }
-        if (cls.slice(-4,-1) == "kan") {
-            kan_cnt += 1;
-            var num = cls.slice(-1);
+        if (cls.slice(0,2) == "30" || cls.slice(0,2) == "40") {
+            cnt += 1;
+            var num = cls.slice(2);
             num -= 1;
             if (kan[num] == null){
                 kan[num] = {
@@ -176,14 +176,14 @@ function calc() {
             else if (tmp.slice(0, 1) == "p") kan[num].pin += tmp.slice(1);
             else if (tmp.slice(0, 1) == "s") kan[num].sou += tmp.slice(1);
             else if (tmp.slice(0, 1) == "h") kan[num].honors += tmp.slice(1);
-            if (kan_cnt == 3) {
+            if (cnt == 3) {
                 if (tmp.slice(0, 1) == "m") kan[num].man += tmp.slice(1);
                 else if (tmp.slice(0, 1) == "p") kan[num].pin += tmp.slice(1);
                 else if (tmp.slice(0, 1) == "s") kan[num].sou += tmp.slice(1);
                 else if (tmp.slice(0, 1) == "h") kan[num].honors += tmp.slice(1);
-                kan_cnt = 0;
+                cnt = 0;
             }
-            if (cls == "close_kan") kan[num].open = 0
+            if (cls.slice(0,2) == "40") kan[num].open = 0
             else kan[num].open = 1
         }
     }

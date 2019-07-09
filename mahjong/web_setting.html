@@ -6,7 +6,6 @@
 
     <!-- ビューポートの設定 -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
 
     <!-- スタイルシートの読み込み -->
     <link rel="stylesheet" href="style_set.css">
@@ -16,13 +15,10 @@
     <script src="modal_set.js"></script>
     <script src="web_setting.js"></script>
 
-    <title>麻雀カメラ</title>
+    <title>雀鳳</title>
 </head>
 
 <body>
-    <!-- タブレット端末の場合の警告(テスト用) -->
-    <h1 class="error" id="tablet">現在、タブレット端末は対応していません</h1>
-
     <!-- 縦画面時に表示 -->
     <h1 class="error" id="muki">画面を横に傾けてください</h1>
 
@@ -31,28 +27,58 @@
     <div class="wrapper">
         <div class="column_tehai">
             <h2 id="title" class="title">手牌</h2>
-            <button id="pon" type="button" onclick="modal_open_naki(this.id)">ポン</button>
-            <button id="chi" type="button" onclick="modal_open_naki(this.id)">チー</button>
-            <button id="open_kan" type="button" onclick="modal_open_naki(this.id)">明カン</button>
-            <button id="close_kan" type="button" onclick="modal_open_naki(this.id)">暗カン</button>
+            <button id="10" type="button" onclick="modal_open_naki(this.id)">ポン</button>
+            <button id="20" type="button" onclick="modal_open_naki(this.id)">チー</button>
+            <button id="30" type="button" onclick="modal_open_naki(this.id)">明カン</button>
+            <button id="40" type="button" onclick="modal_open_naki(this.id)">暗カン</button>
         </div>
         <div class="column_horahai">
             <h2 class="title">和了牌</h2>
         </div>
     </div>
-    <div class="tehai">
+    <div id="tehai" class="tehai">
         <script>
             var args = getUrlVars();
+            console.log(args);
             var ar = ["tehai_01", "tehai_02", "tehai_03", "tehai_04", "tehai_05", "tehai_06", "tehai_07", "tehai_08", "tehai_09", "tehai_10", "tehai_11", "tehai_12", "tehai_13", "agarihai"];
             for (var j = 0; j < 14; j++) {
                 var hai = args[String(j)];
                 if (hai != undefined) {
                     var hai_0 = hai.slice(0, 1);
-                    var hai_1 = hai.slice(1);
-                    document.write(`<img id="${ar[j]}" src="hai/${hai_0}/${hai_1}.png" alt="${hai}" onclick="modal_open(this.id)">`);
+                    var hai_1 = hai.slice(1, 2);
+                    switch (hai.slice(2, 3)) {
+                        case "p":
+                            var cls = "10" + pon_cnt;
+                            naki_cnt += 1
+                            if (naki_cnt == 3) {
+                                pon_cnt += 1;
+                                naki_cnt = 0;
+                            }
+                            break;
+                        case "c":
+                            var cls = "20" + chi_cnt;
+                            naki_cnt += 1
+                            if (naki_cnt == 3) {
+                                chi_cnt += 1;
+                                naki_cnt = 0;
+                            }
+                            break;
+                        case "k":
+                            var cls = "30" + kan_cnt;
+                            naki_cnt += 1
+                            if (naki_cnt == 3) {
+                                kan_cnt += 1;
+                                naki_cnt = 0;
+                            }
+                            break;
+                        default:
+                            var cls = "none";
+                            break;
+                    }
+                    document.write(`<img id="${ar[j]}" src="hai/${hai_0}/${hai_1}.png" alt="${hai_0 + hai_1}" class="${cls}" onclick="modal_open(this.id)">`);
                 }
                 else {
-                    document.write(`<img id="${ar[j]}" src="hai/h/error.png" alt="error" onclick="modal_open(this.id)">`);
+                    document.write(`<img id="${ar[j]}" src="hai/h/error.png" alt="error" class="none" onclick="modal_open(this.id)">`);
                 }
             }
         </script>
@@ -66,17 +92,35 @@
                 <h2>ドラ</h2>
                 <div class="dora1">
                     <script>
+                        var args = getUrlVars();
                         var ar = ["dora_01", "dora_02", "dora_03", "dora_04", "dora_05"];
-                        for (var j of ar) {
-                            document.write(`<img id="${j}" src="hai/h/error.png" alt="error" onclick="modal_open(this.id)">`);
+                        for (var j = 0; j < 6; j++) { 
+                            var hai = args[String(j + 20)];
+                            if (hai != undefined) {
+                                var hai_0 = hai.slice(0, 1);
+                                var hai_1 = hai.slice(1, 2);
+                                document.write(`<img id="${ar[j]}" src="hai/${hai_0}/${hai_1}.png" alt="${hai}" onclick="modal_open(this.id)">`);
+                            } 
+                            else {
+                                document.write(`<img id="${ar[j]}" src="hai/h/error.png" alt="error" onclick="modal_open(this.id)">`);
+                            }
                         }
                     </script>
                 </div>
                 <div class="dora2">
                     <script>
+                        var args = getUrlVars();
                         var ar = ["dora_06", "dora_07", "dora_08", "dora_09", "dora_10"];
-                        for (var j of ar) {
-                            document.write(`<img id="${j}" src="hai/h/error.png" alt="error" onclick="modal_open(this.id)">`);
+                        for (var j = 0; j < 6; j++) { 
+                            var hai = args[String(j + 25)];
+                            if (hai != undefined) {
+                                var hai_0 = hai.slice(0, 1);
+                                var hai_1 = hai.slice(1, 2);
+                                document.write(`<img id="${ar[j]}" src="hai/${hai_0}/${hai_1}.png" alt="${hai}" onclick="modal_open(this.id)">`);
+                            } 
+                            else {
+                                document.write(`<img id="${ar[j]}" src="hai/h/error.png" alt="error" onclick="modal_open(this.id)">`);
+                            }
                         }
                     </script>
                 </div>
@@ -88,19 +132,19 @@
             <div class="info">
                 <h2 class>風牌</h2>
                 <div class="wrapper">
-                    <div class="column_title">
-                        <h3 class="ba">場風</h3>
-                    </div>
                     <div class="column_kazehai">
                         <img src="hai/h/1.png" id="bakaze" alt="1" onclick="changewind(this.id, this.alt)">
                     </div>
+                    <div class="column_title">
+                        <h3 class="ba">場</h3>
+                    </div>
                 </div>
                 <div class="wrapper">
-                    <div class="column_title">
-                        <h3 class="ji">自風</h3>
-                    </div>
                     <div class="column_kazehai">
                         <img src="hai/h/1.png" id="jikaze" alt="1" onclick="changewind(this.id, this.alt)">
+                    </div>
+                    <div class="column_title">
+                        <h3 class="ji">家</h3>
                     </div>
                 </div>
             </div>
@@ -250,10 +294,11 @@
 
     <!-- 鳴きのモーダルウィンドウ -->
     <div id="modal-content-naki">
-        <h2 class="title">ポンした牌を選択してください。</h2>
+        <h2 id="naki_title" class="title">ポンした牌を選択してください</h2>
         <div id="tehai_naki" class="tehai_naki">
 
         </div>
+        <h2>既に鳴いている牌を選択した場合は解除されます</h2>
         <button type="button" id="modal-close" class="close-naki" onclick="naki_reset()">キャンセル</button>
     </div>
 </body>
