@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADHD Champion Select - あなたのプレイスタイル診断</title>
+    
+    <!-- OGP (Open Graph Protocol) Tags -->
+    <meta property="og:title" content="ADHD Champion Select - あなたのプレイスタイル診断" />
+    <meta property="og:description" content="LoLプレイヤー向けのADHDスクリーニング診断。あなたのチャンピオンタイプを診断して、プレイスタイルを分析！" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://web.syado.net/diagnosis/adhd-lol-champion-select.html" />
+    <meta property="og:image" content="https://web.syado.net/diagnosis/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="ADHD Champion Select" />
+    <meta property="og:locale" content="ja_JP" />
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ADHD Champion Select - あなたのプレイスタイル診断" />
+    <meta name="twitter:description" content="LoLプレイヤー向けのADHDスクリーニング診断。あなたのチャンピオンタイプを診断して、プレイスタイルを分析！" />
+    <meta name="twitter:image" content="https://web.syado.net/diagnosis/og-image.png" />
+    <meta name="twitter:site" content="@yourhandle" />
+    
+    <!-- General Meta Tags -->
+    <meta name="description" content="LoLプレイヤー向けのADHDスクリーニング診断。ゲーム風UIで楽しく自己分析！" />
+    <meta name="keywords" content="ADHD,診断,League of Legends,LoL,チャンピオン,プレイスタイル" />
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
@@ -344,6 +367,15 @@
             background: linear-gradient(135deg, #1DA1F2, #0d8bd9);
         }
 
+        #shareTwitterImageBtn {
+            background: linear-gradient(135deg, #1DA1F2, #0d95e8);
+        }
+
+        #shareTwitterImageBtn:hover {
+            background: linear-gradient(135deg, #1589d4, #0a7bc4);
+            box-shadow: 0 5px 25px rgba(29, 161, 242, 0.5);
+        }
+
         #copyTextBtn:hover,
         #saveImageBtn:hover {
             background: rgba(200, 170, 110, 0.3);
@@ -365,6 +397,21 @@
         .alert-danger {
             border-color: #f44336;
             background: rgba(244, 67, 54, 0.1);
+        }
+
+        .alert-info {
+            border-color: #2196F3;
+            background: rgba(33, 150, 243, 0.1);
+        }
+
+        .alert code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .alert a {
+            font-weight: 700;
+            text-decoration: underline;
         }
 
         .alert h3 {
@@ -985,7 +1032,7 @@
                         </div>
                     </div>
 
-                    <div class="alert alert-warning">
+                    <div class="alert alert-info">
                         <h3>📋 診断内容</h3>
                         <p style="margin-bottom: 10px;">あなたのLoLでのプレイスタイルから、集中力・衝動性・戦略性を分析します。</p>
                         <p style="margin-bottom: 10px;"><strong>全5セクション・約50問</strong>（所要時間: 10-15分）</p>
@@ -997,6 +1044,27 @@
                             <li style="margin: 5px 0;">症状の時期（4問）</li>
                         </ul>
                         <p style="margin-top: 15px; font-weight: 700;">診断結果: あなた専用の「ADHDチャンピオン」が決定！</p>
+                    </div>
+
+                    <div class="alert" style="background: rgba(200, 170, 110, 0.1); border-color: #c8aa6e;">
+                        <h3>💡 OGP設定済み</h3>
+                        <p style="margin-bottom: 10px; color: #f0e6d2;">
+                            このページは既にOGP（SNSカード表示）が設定されています！
+                        </p>
+                        <ul style="margin-left: 20px; color: #f0e6d2;">
+                            <li style="margin: 5px 0;">
+                                <strong>ページURL:</strong><br>
+                                <code style="background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; color: #c8aa6e; font-size: 0.85em;">
+                                    https://web.syado.net/diagnosis/adhd-lol-champion-select.html
+                                </code>
+                            </li>
+                            <li style="margin: 5px 0;">
+                                <strong>OGP画像URL:</strong><br>
+                                <code style="background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; color: #c8aa6e; font-size: 0.85em;">
+                                    https://web.syado.net/diagnosis/og-image.png
+                                </code>
+                            </li>
+                        </ul>
                     </div>
 
                     <button class="btn btn-primary" style="width: 100%; font-size: 1.3em;" id="startBtn">
@@ -1217,6 +1285,34 @@
                         </ul>
                     </div>
 
+                    <div class="alert alert-info">
+                        <h3>✅ OGP設定完了！</h3>
+                        <p style="margin-bottom: 10px;">
+                            このページは既にOGP（SNSカード表示）が設定されています。画像をアップロードすれば、SNSでカード表示されます！
+                        </p>
+                        <ol style="margin-left: 20px;">
+                            <li style="margin: 8px 0;">
+                                <strong>下の「OGP画像を生成」ボタンをクリック</strong>
+                            </li>
+                            <li style="margin: 8px 0;">
+                                <strong>og-image.png をダウンロード</strong>
+                            </li>
+                            <li style="margin: 8px 0;">
+                                <strong>サーバーにアップロード:</strong><br>
+                                <code style="background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px;">
+                                    https://web.syado.net/diagnosis/og-image.png
+                                </code>
+                            </li>
+                            <li style="margin: 8px 0;">
+                                <strong>確認:</strong><br>
+                                <a href="https://cards-dev.twitter.com/validator" target="_blank" style="color: #c8aa6e; text-decoration: underline;">Twitter Card Validator</a> でテスト
+                            </li>
+                        </ol>
+                        <button class="btn btn-primary" id="generateOGImageBtn" style="margin-top: 15px; width: 100%;">
+                            🖼️ OGP画像を生成（1200x630px）
+                        </button>
+                    </div>
+
                     <div class="card" style="background: rgba(200, 170, 110, 0.1);">
                         <div class="section-title">
                             <div class="section-icon">📤</div>
@@ -1224,9 +1320,13 @@
                         </div>
                         
                         <div class="share-buttons" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                            <button class="btn btn-primary" id="shareTwitterBtn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <button class="btn btn-primary" id="shareTwitterImageBtn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
                                 <span style="font-size: 1.3em;">𝕏</span>
-                                Xでシェア
+                                画像付きでシェア
+                            </button>
+                            <button class="btn btn-secondary" id="shareTwitterBtn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                                <span style="font-size: 1.3em;">𝕏</span>
+                                テキストのみ
                             </button>
                             <button class="btn btn-secondary" id="copyTextBtn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
                                 📋
@@ -1469,6 +1569,13 @@
                 }
 
                 // Share buttons
+                const shareTwitterImageBtn = document.getElementById('shareTwitterImageBtn');
+                if (shareTwitterImageBtn) {
+                    shareTwitterImageBtn.addEventListener('click', () => {
+                        this.shareToTwitterWithImage();
+                    });
+                }
+
                 const shareTwitterBtn = document.getElementById('shareTwitterBtn');
                 if (shareTwitterBtn) {
                     shareTwitterBtn.addEventListener('click', () => {
@@ -1489,6 +1596,34 @@
                         this.saveResultImage();
                     });
                 }
+
+                const generateOGImageBtn = document.getElementById('generateOGImageBtn');
+                if (generateOGImageBtn) {
+                    generateOGImageBtn.addEventListener('click', () => {
+                        this.generateOGImage();
+                    });
+                }
+            },
+
+            shareToTwitterWithImage() {
+                const scores = this.calculateScores();
+                const champion = this.determineChampion(scores);
+                
+                // まず画像を生成してダウンロード
+                this.generateAndDownloadImage(champion, scores, () => {
+                    // 画像ダウンロード後、案内メッセージを表示
+                    this.showShareMessage('📥 画像をダウンロードしました！\n⏳ 3秒後にツイート画面を開きます...', 'success');
+                    
+                    // 3秒待ってからツイート画面を開く
+                    setTimeout(() => {
+                        const text = `【ADHD Champion Select】\n私のチャンピオンは「${champion.name}」${champion.emoji}\n『${champion.title}』\n\n不注意: ${scores.inattention}/9\n衝動性: ${scores.hyperactivity}/9\n\n↓ダウンロードした画像を添付してツイート！`;
+                        
+                        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                        window.open(twitterUrl, '_blank');
+                        
+                        this.showShareMessage('✅ ダウンロードした画像をツイートに添付してください！', 'success');
+                    }, 3000);
+                });
             },
 
             shareToTwitter() {
@@ -1497,7 +1632,7 @@
                 
                 const text = `【ADHD Champion Select】\n私のチャンピオンは「${champion.name}」${champion.emoji}\n『${champion.title}』\n\n不注意: ${scores.inattention}/9\n衝動性: ${scores.hyperactivity}/9\n\nあなたも診断してみよう！`;
                 
-                const url = 'https://adhd-lol-diagnosis.example.com'; // 実際のURLに変更
+                const url = 'https://web.syado.net/diagnosis/adhd-lol-champion-select.html';
                 const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                 
                 window.open(twitterUrl, '_blank');
@@ -1554,6 +1689,13 @@ ${champion.rDesc}
             saveResultImage() {
                 const scores = this.calculateScores();
                 const champion = this.determineChampion(scores);
+                
+                this.generateAndDownloadImage(champion, scores, () => {
+                    this.showShareMessage('✅ 画像を保存しました！', 'success');
+                });
+            },
+
+            generateAndDownloadImage(champion, scores, callback) {
 
                 const canvas = document.createElement('canvas');
                 canvas.width = 1200;
@@ -1682,16 +1824,21 @@ ${champion.rDesc}
                     const a = document.createElement('a');
                     a.href = url;
                     a.download = `adhd-champion-${champion.name.replace(/\s/g, '-')}.png`;
+                    document.body.appendChild(a);
                     a.click();
+                    document.body.removeChild(a);
                     URL.revokeObjectURL(url);
-                    this.showShareMessage('✅ 画像を保存しました！', 'success');
+                    
+                    if (callback) {
+                        callback();
+                    }
                 });
             },
 
             showShareMessage(message, type) {
                 const messageDiv = document.getElementById('shareMessage');
                 if (messageDiv) {
-                    messageDiv.textContent = message;
+                    messageDiv.innerHTML = message.replace(/\n/g, '<br>');
                     messageDiv.style.display = 'block';
                     messageDiv.style.background = type === 'success' 
                         ? 'rgba(76, 175, 80, 0.2)' 
@@ -1703,8 +1850,78 @@ ${champion.rDesc}
 
                     setTimeout(() => {
                         messageDiv.style.display = 'none';
-                    }, 3000);
+                    }, 5000);
                 }
+            },
+
+            generateOGImage() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1200;
+                canvas.height = 630;
+                const ctx = canvas.getContext('2d');
+
+                // Background gradient
+                const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                gradient.addColorStop(0, '#0a1428');
+                gradient.addColorStop(0.5, '#1e2328');
+                gradient.addColorStop(1, '#0a1428');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Stars
+                ctx.fillStyle = '#c8aa6e';
+                for (let i = 0; i < 80; i++) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height;
+                    const size = Math.random() * 2 + 1;
+                    ctx.beginPath();
+                    ctx.arc(x, y, size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // Border
+                ctx.strokeStyle = '#c8aa6e';
+                ctx.lineWidth = 6;
+                ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+
+                // Title
+                ctx.fillStyle = '#c8aa6e';
+                ctx.font = 'bold 80px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('ADHD CHAMPION SELECT', canvas.width / 2, 140);
+
+                // Icon/Emoji
+                ctx.font = '200px Arial';
+                ctx.fillText('🎮', canvas.width / 2, 350);
+
+                // Subtitle
+                ctx.font = 'bold 50px Arial';
+                ctx.fillStyle = '#a09b8c';
+                ctx.fillText('あなたのプレイスタイル診断', canvas.width / 2, 450);
+
+                // Description
+                ctx.font = '35px Arial';
+                ctx.fillStyle = '#f0e6d2';
+                ctx.fillText('LoLプレイヤー向けADHDスクリーニングツール', canvas.width / 2, 520);
+
+                // Footer
+                ctx.font = 'bold 30px Arial';
+                ctx.fillStyle = '#785a28';
+                ctx.fillText('診断してあなたのチャンピオンを見つけよう！', canvas.width / 2, 580);
+
+                // Convert to blob and download
+                canvas.toBlob((blob) => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'og-image.png';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    this.showShareMessage('✅ OGP画像（og-image.png）を保存しました！\nこの画像をサーバーにアップロードして、HTMLのog:imageタグのURLを更新してください。', 'success');
+                });
             }
         };
 
