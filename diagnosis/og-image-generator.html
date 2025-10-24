@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OGP画像生成ツール</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: #fff;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container { max-width: 1300px; width: 100%; }
+        .header { text-align: center; margin-bottom: 40px; }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #c8aa6e, #f0e6d2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .preview-container {
+            background: #0a1428;
+            border: 2px solid #785a28;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        #preview {
+            width: 100%;
+            max-width: 1200px;
+            border: 3px solid #c8aa6e;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            padding: 18px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #c8aa6e, #785a28);
+            color: #0a1428;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #f0e6d2, #c8aa6e);
+            transform: translateY(-2px);
+        }
+        .info-box {
+            background: rgba(200, 170, 110, 0.1);
+            border: 2px solid #785a28;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        .info-box h3 { color: #c8aa6e; margin-bottom: 15px; }
+        .info-box code {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: #f0e6d2;
+        }
+        .success { background: rgba(76, 175, 80, 0.2); border: 2px solid #4CAF50; color: #4CAF50; padding: 20px; border-radius: 8px; margin-top: 20px; display: none; text-align: center; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 OGP画像生成ツール</h1>
+            <p style="color: #a09b8c;">ADHD Champion Select用のOGP画像</p>
+        </div>
+        <div class="preview-container">
+            <canvas id="preview" width="1200" height="630"></canvas>
+        </div>
+        <div class="controls">
+            <button class="btn btn-primary" id="downloadBtn">💾 ダウンロード（og-image.png）</button>
+        </div>
+        <div class="success" id="successMessage">✅ og-image.png をダウンロードしました！</div>
+        <div class="info-box">
+            <h3>📝 次のステップ</h3>
+            <ol style="margin-left: 20px; line-height: 1.8;">
+                <li>この画像をサーバーにアップロード: <code>https://web.syado.net/diagnosis/og-image.png</code></li>
+                <li>HTMLファイルの og:image タグが正しいURLを指しているか確認</li>
+                <li><a href="https://cards-dev.twitter.com/validator" target="_blank" style="color: #c8aa6e;">Twitter Card Validator</a> で確認</li>
+            </ol>
+        </div>
+    </div>
+    <script>
+        const canvas = document.getElementById('preview');
+        const ctx = canvas.getContext('2d');
+        function generateImage() {
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#0a1428');
+            gradient.addColorStop(0.5, '#1e2328');
+            gradient.addColorStop(1, '#0a1428');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#c8aa6e';
+            for (let i = 0; i < 100; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 2.5 + 0.5;
+                ctx.globalAlpha = Math.random() * 0.5 + 0.3;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+            const borderGradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            borderGradient.addColorStop(0, '#c8aa6e');
+            borderGradient.addColorStop(0.5, '#f0e6d2');
+            borderGradient.addColorStop(1, '#c8aa6e');
+            ctx.strokeStyle = borderGradient;
+            ctx.lineWidth = 8;
+            ctx.strokeRect(15, 15, canvas.width - 30, canvas.height - 30);
+            ctx.fillStyle = '#c8aa6e';
+            ctx.font = 'bold 90px Arial';
+            ctx.textAlign = 'center';
+            ctx.shadowColor = 'rgba(200, 170, 110, 0.5)';
+            ctx.shadowBlur = 20;
+            ctx.fillText('ADHD CHAMPION SELECT', canvas.width / 2, 150);
+            ctx.shadowBlur = 0;
+            ctx.font = '220px Arial';
+            ctx.shadowColor = 'rgba(200, 170, 110, 0.6)';
+            ctx.shadowBlur = 30;
+            ctx.fillStyle = '#f0e6d2';
+            ctx.fillText('🎮', canvas.width / 2, 360);
+            ctx.shadowBlur = 0;
+            ctx.font = 'bold 56px Arial';
+            ctx.fillStyle = '#f0e6d2';
+            ctx.fillText('あなたのプレイスタイル診断', canvas.width / 2, 490);
+            ctx.font = '38px Arial';
+            ctx.fillStyle = '#a09b8c';
+            ctx.fillText('LoLプレイヤー向けADHDスクリーニングツール', canvas.width / 2, 545);
+        }
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'og-image.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                document.getElementById('successMessage').style.display = 'block';
+                setTimeout(() => { document.getElementById('successMessage').style.display = 'none'; }, 3000);
+            });
+        });
+        window.addEventListener('load', generateImage);
+    </script>
+</body>
+</html>
