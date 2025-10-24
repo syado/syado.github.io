@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="ADHD Champion Select - あなたのプレイスタイル診断" />
     <meta name="twitter:description" content="LoLプレイヤー向けのADHDスクリーニング診断。あなたのチャンピオンタイプを診断して、プレイスタイルを分析！" />
     <meta name="twitter:image" content="https://web.syado.net/diagnosis/adhd-lol-champion-select/og-image.png" />
-    <meta name="twitter:site" content="@yourhandle" />
+    <meta name="twitter:site" content="@_syado_" />
     
     <!-- General Meta Tags -->
     <meta name="description" content="LoLプレイヤー向けのADHDスクリーニング診断。ゲーム風UIで楽しく自己分析！" />
@@ -1046,7 +1046,7 @@
                         <p style="margin-top: 15px; font-weight: 700;">診断結果: あなた専用の「ADHDチャンピオン」が決定！</p>
                     </div>
 
-                    <div class="alert" style="background: rgba(200, 170, 110, 0.1); border-color: #c8aa6e;">
+                    <!-- <div class="alert" style="background: rgba(200, 170, 110, 0.1); border-color: #c8aa6e;">
                         <h3>💡 OGP設定済み</h3>
                         <p style="margin-bottom: 10px; color: #f0e6d2;">
                             このページは既にOGP（SNSカード表示）が設定されています！
@@ -1065,7 +1065,7 @@
                                 </code>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
 
                     <button class="btn btn-primary" style="width: 100%; font-size: 1.3em;" id="startBtn">
                         🎮 チャンピオンセレクト開始
@@ -1285,7 +1285,7 @@
                         </ul>
                     </div>
 
-                    <div class="alert alert-info">
+                    <!-- <div class="alert alert-info">
                         <h3>✅ OGP設定完了！</h3>
                         <p style="margin-bottom: 10px;">
                             このページは既にOGP（SNSカード表示）が設定されています。画像をアップロードすれば、SNSでカード表示されます！
@@ -1311,7 +1311,7 @@
                         <button class="btn btn-primary" id="generateOGImageBtn" style="margin-top: 15px; width: 100%;">
                             🖼️ OGP画像を生成（1200x630px）
                         </button>
-                    </div>
+                    </div> -->
 
                     <div class="card" style="background: rgba(200, 170, 110, 0.1);">
                         <div class="section-title">
@@ -1616,9 +1616,10 @@
                     
                     // 3秒待ってからツイート画面を開く
                     setTimeout(() => {
-                        const text = `【ADHD Champion Select】\n私のチャンピオンは「${champion.name}」${champion.emoji}\n『${champion.title}』\n\n不注意: ${scores.inattention}/9\n衝動性: ${scores.hyperactivity}/9\n\n↓ダウンロードした画像を添付してツイート！`;
-                        
-                        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+                        const text = `【ADHD Champion Select】\n私のチャンピオンは「${champion.name}」${champion.emoji}\n『${champion.title}』\n`;
+
+                        const url = 'https://web.syado.net/diagnosis/adhd-lol-champion-select';
+                        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                         window.open(twitterUrl, '_blank');
                         
                         this.showShareMessage('✅ ダウンロードした画像をツイートに添付してください！', 'success');
@@ -1629,9 +1630,9 @@
             shareToTwitter() {
                 const scores = this.calculateScores();
                 const champion = this.determineChampion(scores);
-                
-                const text = `【ADHD Champion Select】\n私のチャンピオンは「${champion.name}」${champion.emoji}\n『${champion.title}』\n\n不注意: ${scores.inattention}/9\n衝動性: ${scores.hyperactivity}/9\n\nあなたも診断してみよう！`;
-                
+
+                const text = `【ADHD Champion Select】\n私のチャンピオンは「${champion.name}」${champion.emoji}\n『${champion.title}』\n\n不注意: ${scores.inattention}/9\n衝動性: ${scores.hyperactivity}/9\n戦略性の課題: ${scores.additional}/10\n日常への影響: ${scores.functional}/6\nあなたも診断してみよう！`;
+
                 const url = 'https://web.syado.net/diagnosis/adhd-lol-champion-select';
                 const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
                 
